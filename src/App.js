@@ -1,26 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
+import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter as Router, Route} from "react-router-dom";
+
 import './App.css';
+
+import Navbar from "./components/navbar.component"
+import GoodsList from "./components/goods-list.component";
+import EditGoods from "./components/create-edit-components/edit-goods.component";
+import PlanetList from "./components/planet-list.component";
+import EditPlanet from "./components/create-edit-components/edit-planet.component";
+import SpaceStationList from "./components/spacestation-list.component";
+import EditSpaceStation from "./components/create-edit-components/edit-spacestation.component";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="container">
+        <Navbar />
+        <br/>
+        <Route path="/" exact component={GoodsList} />
+        <Route path="/edit/:id" component={EditGoods} />
+        {/* <Route path="/create" component={CreateGoods} /> */}
+        <Route path="/planet" component={PlanetList} />
+        <Route path="/editplanet/:id" component={EditPlanet} />
+        <Route path="/spacestation" component={SpaceStationList} />
+        <Route path="/editstation/:id" component={EditSpaceStation} />
+      </div>
+    </Router>
   );
 }
+
 
 export default App;
